@@ -1,69 +1,83 @@
 # %%
+import json
 # APP ONBOARDING ASSISTANT
 
 # take user input
-name = input("What's your name?")
-age = input("What's your age?")
-username = input("What's your username?")
-location = input("What's your location?")
-# %%
+# age = input("What's your age?")
+# username = input("What's your username?")
+# location = input("What's your location?")
 
-print(f"Can you confirm that your name is {name}?")
-confirmation = None
-while confirmation != "Y":
-    name = input("What's your name?")
-    confirmation = input("Enter Y/N\n")
-print("All good, let's move on")
 
-# filling in database
-
-# %%
-# OOP
+def get_and_validate_user_attribute(attribute_name):
+    confirmation = None
+    while confirmation != "Y":
+        value = input(f"What's your {attribute_name}?")
+        print(f"Can you confirm that your {attribute_name} is {value}?")
+        confirmation = input("Enter Y/N\n")
+    print("All good, let's move on")
+    return value
 
 
 class User:
     def __init__(self, name, age):  # remove need to call this manually
-        self.name = name  # pass in user attributes as parameters upon initialisation
-        self.age = age  # define all user attributes here
-        print(self.name)
+        self.data = {
+            "age": age,
+            "name": name
+        }
 
-    def print_nicely(self, prefix=None):  # TODO print the user nicely
-        print(f"Hey the name is {self.name}")
+    def print_nicely(self, prefix=None):  # print the user nicely
+        print(
+            f"Hey! My name is {self.data.name}. I am {self.data.age} years old")
+
+    def update(self, attribute_name: str, value: any):
+        """Updates a attribute of this instance of the class by name
+
+        if the parameter is equal to "name", then self.name will be set to value
+        if the parameter is equal to "age", then self.age will be set to value
+
+        Parameters:
+        - attribute_name: str
+        - value: any
+
+        Returns: None
+        """
+        if attribute_name not in self.data.keys():
+            raise ValueError("That's not a valid piece of data to update")
+        self.data[attribute_name] = value
+
     # TODO save to file
+    def save(self):
+        with open("userdata.json", "w") as file:
+            json.dump(self.data, file)
 
-    # TODO load from file (using static method - warning - more advanced)
+            # file.write(self.name)
 
-    def my_function2(self):
-        print("I am being called!")
-        print(self.name)
-        return True
+    def load(self):
+        """load from file"""
+        with open("userdata.json", "r") as file:
+            user_data = json.load(file)
+            self.data = user_data
+    # TODO (using static method - warning - more advanced)
 
-    def my_function(param1, param2):
-        print("I am being called!")
-        return True
-
-
-# TODO define onboarding inside function
-# TODO call onboarding to get and validate user attributes
-# TODO pass user attributes to user class to initialise new user
-# TODO create signup method
-# TODO create login method
-
-josh = User()
-josh.print_nicely()
-# josh.set_up("Josh")
-# print(josh.name)
-# josh.my_function2()
 
 # %%
-# harry = User()
-# harry.set_up("Harry")
-sam = User("Sam", 10)
-sam.__init__("Sam", 10)  # DO NOT DO THIS
+
+
+def main():
+
+    # GET AND VALIDATE USER ATTRIBUTES
+    # name = get_and_validate_user_attribute("name")
+    # age = get_and_validate_user_attribute("age")
+
+    # TODO 1 pass user attributes to user class to initialise new user
+
+    print(user.data["age"])
+    # print(user.age)
+    # user.update("agecsdcds", 26)
+    # print(user.age)
+    # TODO create loop to continually ask user what action they want to take
+    # TODO create signup method
+    # TODO create login method
+
+
 # %%
-
-# allow us to access it later
-
-# print some of it out
-
-# save them in a file somewhere

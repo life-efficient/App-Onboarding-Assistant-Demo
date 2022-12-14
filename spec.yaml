@@ -1,0 +1,12 @@
+sessions:
+  - description: |
+      Watch along as we program a virtual assistant that welcomes new users to your app, and helps them to set up a profile.
+      We will define a series of steps that the user needs to be taken through, and then loop through them to collect input from the user.
+      Then, we will pass that data to a new class that we'll implement, which creates an instance of a new user.
+
+    prerequisites:
+      - 4223a361-1776-424d-a561-1f8fb0260862
+      - c2db5943-3f32-4cde-b8f5-396009dbd0a5
+  # https://portal.theaicore.com/units/MODULEID/LESSONID
+  # https://portal.theaicore.com/units/f31dfbbe-2092-488c-8d24-20f1e9024b45/4223a361-1776-424d-a561-1f8fb0260862
+  # https://portal.theaicore.com/units/f31dfbbe-2092-488c-8d24-20f1e9024b45/c2db5943-3f32-4cde-b8f5-396009dbd0a5

@@ -1,1 +1,1 @@
-{"age": 27, "name": "Harry"}
+{"age": [27, 30], "name": ["Harry", "Jonny"], "password": ["hello", "secret"], "username": ["hb", "jj1"]}
